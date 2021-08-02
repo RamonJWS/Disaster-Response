@@ -82,13 +82,12 @@ The project includes a web app where an emergency worker can input a new message
         `python train_classifier.py ../data/DisasterResponse.db classifier.pkl`
 
 2. Run the following command in the app's directory to run your web app.
-    `python run.py`
+   `python run.py`
     
-3. Open a new terminal, leaving "run.py" running, and input.  
-    `env|grep WORK`
+3. Open a new terminal, leaving "run.py" running, and input. `env|grep WORK`
 
 4. Go to Enter:
-  `http://SPACEDID-3001.udacity-student-workspaces.com`
+   `http://SPACEDID-3001.udacity-student-workspaces.com`
 
 ### Licensing, Authors, Acknowledgements, etc.
 Thanks to Udacity for starter code for the web app. 
