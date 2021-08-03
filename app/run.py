@@ -77,8 +77,9 @@ def index():
     category_names = df1.columns
     
     # plots a distribution plot of the text length
-    df['text length'] = df['message'].apply(lambda x: len(x.split()))
-    histogram = df[df['text length'] < 100].groupby('text length').count()['id']
+    df2 = df.copy()
+    df2['text length'] = df2['message'].apply(lambda x: len(x.split()))
+    histogram = df2[df2['text length'] < 100].groupby('text length').count()['id']
     
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
