@@ -88,6 +88,8 @@ The project includes a web app where an emergency worker can input a new message
 
 4. Go to Enter:
    `http://SPACEDID-3001.udacity-student-workspaces.com`
+   
+If the server is running the project can be viewd here: http://view6914b2f4-3001.udacity-student-workspaces.com
 
 ### Licensing, Authors, Acknowledgements, etc.
 Thanks to Udacity for starter code for the web app. 
