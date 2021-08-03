@@ -6,6 +6,9 @@ import nltk
 from nltk.tokenize import word_tokenize, RegexpTokenizer
 from nltk.corpus import stopwords
 from nltk import pos_tag
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('averaged_perceptron_tagger')
 
 from flask import Flask
 from flask import render_template, request, jsonify
@@ -22,9 +25,6 @@ class NounCount(BaseEstimator, TransformerMixin):
     """
     
     def count_nouns(self, text):
-        nltk.download('punkt')
-        nltk.download('stopwords')
-        nltk.download('averaged_perceptron_tagger')
         
         list_of_noun_tags = ["NN", "NNP", "NNPS", "NNS"]
         noun_count = 0
@@ -71,9 +71,14 @@ def index():
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
     
+    # plot counts of all the disaster responce messages
     df1 = df.drop(['id','message','original','genre'], axis=1)
     category_counts=df1.sum(axis=0)
     category_names = df1.columns
+    
+    # plots a distribution plot of the text length
+    df['text length'] = df['message'].apply(lambda x: len(x.split()))
+    histogram = df[df['text length'] < 100].groupby('text length').count()['id']
     
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
@@ -113,7 +118,26 @@ def index():
                     'title': "Category"
                 }
             }
-        }
+        },
+        {
+            'data': [
+                Bar(
+                    x=histogram.index,
+                    y=histogram.values
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Messages Length',
+                'yaxis': {
+                    'title': "Total Messages"
+                },
+                'xaxis': {
+                    'title': "Total Words"
+                }
+            }
+        },
+
     ]
     
     # encode plotly graphs in JSON
