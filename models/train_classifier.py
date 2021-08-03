@@ -119,6 +119,10 @@ def evaluate_model(model, X_test, Y_test):
 
 
 def save_model(model, model_filepath):
+    """
+    Input: The trained model and the name given to the model.
+    Creates: Saves the model to a pickle file to be used in the Flask app.
+    """
     pickle.dump(model, open(model_filepath, "wb"))
 
 
